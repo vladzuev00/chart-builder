@@ -4,10 +4,13 @@ import by.aurorasoft.chart.model.chart.format.ChartFormat;
 import by.aurorasoft.chart.model.chart.format.formatter.ChartFormatter;
 import org.icepear.echarts.Chart;
 import org.icepear.echarts.render.Engine;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.lang.reflect.Field;
@@ -22,36 +25,48 @@ import static org.mockito.Mockito.*;
 public final class PreparedChartTest {
     private static final String FIELD_NAME_FORMATTER = "formatter";
 
+    private static final ChartFormat FORMAT_WITH_MOCKED_FORMATTER = HTML;
+
+    @Mock
+    private ChartFormatter mockedFormatter;
+
     @Captor
     private ArgumentCaptor<Chart<?, ?>> chartArgumentCaptor;
 
-    @Test
-    public void chartShouldBeFormattedOnlyOneTimeForSameFormat()
+    @Before
+    public void injectMockedFormatter()
             throws Exception {
-        final ChartFormatter givenFormatter = mock(ChartFormatter.class);
-        final ChartFormat givenFormat = HTML;
-        injectFormatter(givenFormat, givenFormatter);
+        injectFormatter(FORMAT_WITH_MOCKED_FORMATTER, this.mockedFormatter);
+    }
 
+    @After
+    public void injectGeneralFormatter()
+            throws Exception {
+        injectFormatter(FORMAT_WITH_MOCKED_FORMATTER, this.mockedFormatter);
+    }
+
+    @Test
+    public void chartShouldBeFormattedOnlyOneTimeForSameFormat() {
         final Chart<?, ?> givenChart = mock(Chart.class);
         final PreparedChart givenPreparedChart = new PreparedChart(givenChart);
 
         final byte[] givenFormattedHtml = new byte[]{100, 101, 102};
-        when(givenFormatter.format(any(Chart.class), any(Engine.class)))
+        when(this.mockedFormatter.format(any(Chart.class), any(Engine.class)))
                 .thenReturn(givenFormattedHtml);
 
-        final byte[] actual = givenPreparedChart.format(givenFormat);
+        final byte[] actual = givenPreparedChart.format(FORMAT_WITH_MOCKED_FORMATTER);
         assertArrayEquals(givenFormattedHtml, actual);
 
-        final byte[] secondActual = givenPreparedChart.format(givenFormat);
+        final byte[] secondActual = givenPreparedChart.format(FORMAT_WITH_MOCKED_FORMATTER);
         assertArrayEquals(givenFormattedHtml, secondActual);
 
-        verify(givenFormatter, times(1)).format(
+        verify(this.mockedFormatter, times(1)).format(
                 this.chartArgumentCaptor.capture(), any(Engine.class)
         );
         assertSame(givenChart, this.chartArgumentCaptor.getValue());
     }
 
-    private static void injectFormatter(final ChartFormat format, final ChartFormatter formatter)
+    private static void injectFormatter(ChartFormat format, ChartFormatter formatter)
             throws Exception {
         final Field formatterField = ChartFormat.class.getDeclaredField(FIELD_NAME_FORMATTER);
         formatterField.setAccessible(true);
@@ -61,5 +76,4 @@ public final class PreparedChartTest {
             formatterField.setAccessible(false);
         }
     }
-
 }
