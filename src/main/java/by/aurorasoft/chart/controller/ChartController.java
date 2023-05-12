@@ -3,7 +3,7 @@ package by.aurorasoft.chart.controller;
 import by.aurorasoft.chart.model.PreparedChart;
 import by.aurorasoft.chart.model.chart.*;
 import by.aurorasoft.chart.model.chart.format.ChartFormat;
-import by.aurorasoft.chart.service.chartbuilding.manager.ChartBuildingServiceManager;
+import by.aurorasoft.chart.service.building.manager.ChartBuildingServiceManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

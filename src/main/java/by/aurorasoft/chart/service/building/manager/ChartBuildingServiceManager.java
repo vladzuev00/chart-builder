@@ -1,8 +1,8 @@
-package by.aurorasoft.chart.service.chartbuilding.manager;
+package by.aurorasoft.chart.service.building.manager;
 
 import by.aurorasoft.chart.model.PreparedChart;
 import by.aurorasoft.chart.model.chart.Chart;
-import by.aurorasoft.chart.service.chartbuilding.AbstractChartBuildingService;
+import by.aurorasoft.chart.service.building.AbstractChartBuildingService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

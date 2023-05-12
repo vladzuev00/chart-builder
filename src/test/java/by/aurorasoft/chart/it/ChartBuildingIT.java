@@ -6,7 +6,7 @@ import by.aurorasoft.chart.model.chart.*;
 import by.aurorasoft.chart.model.series.BarSeries;
 import by.aurorasoft.chart.model.series.PieSeries;
 import by.aurorasoft.chart.model.series.PieSeries.PieDataItem;
-import by.aurorasoft.chart.service.chartbuilding.manager.ChartBuildingServiceManager;
+import by.aurorasoft.chart.service.building.manager.ChartBuildingServiceManager;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -91,34 +91,35 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
     }
 
     private static String createBarHtml() {
-        return "<html>\n" +
-                "\n" +
-                "<head>\n" +
-                "    <meta charset=\"utf-8\" />\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n" +
-                "    <title>ECharts Demo</title>\n" +
-                "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js\"\n" +
-                "        integrity=\"sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA==\"\n" +
-                "        crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>\n" +
-                "    <style>\n" +
-                "        #display-container {\n" +
-                "            width: 100%;\n" +
-                "            height: 100%;\n" +
-                "        }\n" +
-                "    </style>\n" +
-                "</head>\n" +
-                "\n" +
-                "<body>\n" +
-                "    <div id=\"display-container\">\n" +
-                "    </div>\n" +
-                "    <script type=\"text/javascript\">\n" +
-                "        var chart = echarts.init(document.getElementById(\"display-container\")); \n" +
-                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Matcha Latte\",\"Milk Tea\",\"Cheese Cocoa\",\"Walnut Brownie\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"2015\",\"animation\":false,\"data\":[43.3,83.1,86.4,72.4]},{\"type\":\"bar\",\"name\":\"2016\",\"animation\":false,\"data\":[44.3,84.1,87.4,73.4]},{\"type\":\"bar\",\"name\":\"2017\",\"animation\":false,\"data\":[45.3,85.1,88.4,74.4]}]}\n" +
-                "        chart.setOption(option);\n" +
-                "    </script>\n" +
-                "</body>\n" +
-                "\n" +
-                "</html>";
+        return """
+                <html>
+
+                <head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <title>ECharts Demo</title>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js"
+                        integrity="sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                    <style>
+                        #display-container {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <div id="display-container">
+                    </div>
+                    <script type="text/javascript">
+                        var chart = echarts.init(document.getElementById("display-container"));\s
+                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Matcha Latte","Milk Tea","Cheese Cocoa","Walnut Brownie"]}],"yAxis":[{"type":"value","name":"axisYName"}],"series":[{"type":"bar","name":"2015","animation":false,"data":[43.3,83.1,86.4,72.4]},{"type":"bar","name":"2016","animation":false,"data":[44.3,84.1,87.4,73.4]},{"type":"bar","name":"2017","animation":false,"data":[45.3,85.1,88.4,74.4]}]}
+                        chart.setOption(option);
+                    </script>
+                </body>
+
+                </html>""";
     }
 
     private static String createBarJson() {
@@ -142,34 +143,35 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
     }
 
     private static String createStackBarHtml() {
-        return "<html>\n" +
-                "\n" +
-                "<head>\n" +
-                "    <meta charset=\"utf-8\" />\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n" +
-                "    <title>ECharts Demo</title>\n" +
-                "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js\"\n" +
-                "        integrity=\"sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA==\"\n" +
-                "        crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>\n" +
-                "    <style>\n" +
-                "        #display-container {\n" +
-                "            width: 100%;\n" +
-                "            height: 100%;\n" +
-                "        }\n" +
-                "    </style>\n" +
-                "</head>\n" +
-                "\n" +
-                "<body>\n" +
-                "    <div id=\"display-container\">\n" +
-                "    </div>\n" +
-                "    <script type=\"text/javascript\">\n" +
-                "        var chart = echarts.init(document.getElementById(\"display-container\")); \n" +
-                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"}]}\n" +
-                "        chart.setOption(option);\n" +
-                "    </script>\n" +
-                "</body>\n" +
-                "\n" +
-                "</html>";
+        return """
+                <html>
+
+                <head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <title>ECharts Demo</title>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js"
+                        integrity="sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                    <style>
+                        #display-container {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <div id="display-container">
+                    </div>
+                    <script type="text/javascript">
+                        var chart = echarts.init(document.getElementById("display-container"));\s
+                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}],"yAxis":[{"type":"value","name":"axisYName"}],"series":[{"type":"bar","name":"Direct","animation":false,"emphasis":{},"data":[320,302,301,334,390,330,320],"stack":"total"},{"type":"bar","name":"Mail Ad","animation":false,"emphasis":{},"data":[120,132,101,134,90,230,210],"stack":"total"},{"type":"bar","name":"Affiliate Ad","animation":false,"emphasis":{},"data":[220,182,191,234,290,330,310],"stack":"total"},{"type":"bar","name":"Video Ad","animation":false,"emphasis":{},"data":[150,212,201,154,190,330,410],"stack":"total"},{"type":"bar","name":"Search Engine","animation":false,"emphasis":{},"data":[820,832,901,934,1290,1330,1320],"stack":"total"}]}
+                        chart.setOption(option);
+                    </script>
+                </body>
+
+                </html>""";
     }
 
     private static String createStackBarJson() {
@@ -195,34 +197,35 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
     }
 
     private static String createStackBarWithLineHtml() {
-        return "<html>\n" +
-                "\n" +
-                "<head>\n" +
-                "    <meta charset=\"utf-8\" />\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n" +
-                "    <title>ECharts Demo</title>\n" +
-                "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js\"\n" +
-                "        integrity=\"sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA==\"\n" +
-                "        crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>\n" +
-                "    <style>\n" +
-                "        #display-container {\n" +
-                "            width: 100%;\n" +
-                "            height: 100%;\n" +
-                "        }\n" +
-                "    </style>\n" +
-                "</head>\n" +
-                "\n" +
-                "<body>\n" +
-                "    <div id=\"display-container\">\n" +
-                "    </div>\n" +
-                "    <script type=\"text/javascript\">\n" +
-                "        var chart = echarts.init(document.getElementById(\"display-container\")); \n" +
-                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"},{\"position\":\"right\",\"type\":\"value\",\"name\":\"line-value\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"},{\"type\":\"line\",\"animation\":false,\"data\":[150,230,224,218,135,147,260],\"yAxisIndex\":1}]}\n" +
-                "        chart.setOption(option);\n" +
-                "    </script>\n" +
-                "</body>\n" +
-                "\n" +
-                "</html>";
+        return """
+                <html>
+
+                <head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <title>ECharts Demo</title>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js"
+                        integrity="sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                    <style>
+                        #display-container {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <div id="display-container">
+                    </div>
+                    <script type="text/javascript">
+                        var chart = echarts.init(document.getElementById("display-container"));\s
+                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}],"yAxis":[{"type":"value","name":"axisYName"},{"position":"right","type":"value","name":"line-value"}],"series":[{"type":"bar","name":"Direct","animation":false,"emphasis":{},"data":[320,302,301,334,390,330,320],"stack":"total"},{"type":"bar","name":"Mail Ad","animation":false,"emphasis":{},"data":[120,132,101,134,90,230,210],"stack":"total"},{"type":"bar","name":"Affiliate Ad","animation":false,"emphasis":{},"data":[220,182,191,234,290,330,310],"stack":"total"},{"type":"bar","name":"Video Ad","animation":false,"emphasis":{},"data":[150,212,201,154,190,330,410],"stack":"total"},{"type":"bar","name":"Search Engine","animation":false,"emphasis":{},"data":[820,832,901,934,1290,1330,1320],"stack":"total"},{"type":"line","animation":false,"data":[150,230,224,218,135,147,260],"yAxisIndex":1}]}
+                        chart.setOption(option);
+                    </script>
+                </body>
+
+                </html>""";
     }
 
     private static String createStackBarWithLineJson() {
@@ -243,34 +246,35 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
     }
 
     private static String createPieHtml() {
-        return "<html>\n" +
-                "\n" +
-                "<head>\n" +
-                "    <meta charset=\"utf-8\" />\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n" +
-                "    <title>ECharts Demo</title>\n" +
-                "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js\"\n" +
-                "        integrity=\"sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA==\"\n" +
-                "        crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>\n" +
-                "    <style>\n" +
-                "        #display-container {\n" +
-                "            width: 100%;\n" +
-                "            height: 100%;\n" +
-                "        }\n" +
-                "    </style>\n" +
-                "</head>\n" +
-                "\n" +
-                "<body>\n" +
-                "    <div id=\"display-container\">\n" +
-                "    </div>\n" +
-                "    <script type=\"text/javascript\">\n" +
-                "        var chart = echarts.init(document.getElementById(\"display-container\")); \n" +
-                "        var option = {\"title\":{\"text\":\"title\"},\"series\":[{\"type\":\"pie\",\"animation\":false,\"data\":[{\"name\":\"item1\",\"value\":50.0},{\"name\":\"item2\",\"value\":75.0},{\"name\":\"item3\",\"value\":150.0}]}]}\n" +
-                "        chart.setOption(option);\n" +
-                "    </script>\n" +
-                "</body>\n" +
-                "\n" +
-                "</html>";
+        return """
+                <html>
+
+                <head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <title>ECharts Demo</title>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js"
+                        integrity="sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                    <style>
+                        #display-container {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <div id="display-container">
+                    </div>
+                    <script type="text/javascript">
+                        var chart = echarts.init(document.getElementById("display-container"));\s
+                        var option = {"title":{"text":"title"},"series":[{"type":"pie","animation":false,"data":[{"name":"item1","value":50.0},{"name":"item2","value":75.0},{"name":"item3","value":150.0}]}]}
+                        chart.setOption(option);
+                    </script>
+                </body>
+
+                </html>""";
     }
 
     private static String createPieJson() {

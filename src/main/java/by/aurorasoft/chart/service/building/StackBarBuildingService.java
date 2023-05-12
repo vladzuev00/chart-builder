@@ -1,4 +1,4 @@
-package by.aurorasoft.chart.service.chartbuilding;
+package by.aurorasoft.chart.service.building;
 
 import by.aurorasoft.chart.model.chart.StackBar;
 import org.icepear.echarts.Bar;

@@ -1,4 +1,4 @@
-package by.aurorasoft.chart.service.chartbuilding;
+package by.aurorasoft.chart.service.building;
 
 import by.aurorasoft.chart.model.chart.CartesianCoordinateChart;
 import by.aurorasoft.chart.model.series.Series;
