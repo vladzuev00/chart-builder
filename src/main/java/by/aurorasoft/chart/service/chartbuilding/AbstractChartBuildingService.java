@@ -5,6 +5,7 @@ import by.aurorasoft.chart.model.chart.Chart;
 import by.aurorasoft.chart.model.series.Series;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.icepear.echarts.origin.util.SeriesOption;
 
 import java.util.Optional;
 
@@ -13,36 +14,45 @@ import static java.util.Arrays.stream;
 @Getter
 @RequiredArgsConstructor
 public abstract class AbstractChartBuildingService<
-        V,
-        S extends Series<V>,
-        C extends Chart<S>,
-        B extends org.icepear.echarts.Chart<?, ?>
+        SERIES_VALUE,
+        SERIES extends Series<SERIES_VALUE>,
+        CHART extends Chart<SERIES>,
+        BUILDER_SERIES extends SeriesOption,
+        BUILDER extends org.icepear.echarts.Chart<?, BUILDER_SERIES>
         > {
-    private final Class<C> sourceType;
+    private final Class<CHART> sourceType;
 
     @SuppressWarnings("unchecked")
     public final PreparedChart build(Chart<?> source) {
-        final C concreteSource = (C) source;
-        final B builder = this.createBuilder();
+        final CHART concreteSource = (CHART) source;
+        final BUILDER builder = this.createBuilder();
         this.appendTitle(concreteSource, builder);
         this.appendSeries(concreteSource, builder);
         this.appendSpecialProperties(concreteSource, builder);
         return new PreparedChart(builder);
     }
 
-    protected abstract B createBuilder();
+    protected abstract BUILDER createBuilder();
 
-    protected abstract void appendSpecialProperties(C source, B builder);
+    protected abstract void appendSpecialProperties(CHART source, BUILDER builder);
 
-    protected abstract void appendSeries(S series, B builder);
+    protected abstract BUILDER_SERIES mapToBuilderSeries(SERIES series);
 
-    private void appendTitle(C source, B builder) {
+    private void appendTitle(CHART source, BUILDER builder) {
         final Optional<String> optionalTitle = source.findTitle();
         optionalTitle.ifPresent(builder::setTitle);
     }
 
-    private void appendSeries(C source, B builder) {
-        final S[] series = source.getSeries();
-        stream(series).forEach(appended -> this.appendSeries(appended, builder));
+    private void appendSeries(CHART source, BUILDER builder) {
+        final SERIES[] series = source.getSeries();
+        stream(series)
+                .map(this::mapToBuilderSeriesWithoutAnimation)
+                .forEach(builder::addSeries);
+    }
+
+    private BUILDER_SERIES mapToBuilderSeriesWithoutAnimation(SERIES series) {
+        final BUILDER_SERIES builderSeries = this.mapToBuilderSeries(series);
+        builderSeries.setAnimation(false);
+        return builderSeries;
     }
 }

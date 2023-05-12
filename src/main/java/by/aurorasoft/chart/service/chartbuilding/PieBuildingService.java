@@ -8,8 +8,13 @@ import org.springframework.stereotype.Service;
 import static java.util.Arrays.stream;
 
 @Service
-public final class PieBuildingService
-        extends AbstractChartBuildingService<PieDataItem[], PieSeries, Pie, org.icepear.echarts.Pie> {
+public final class PieBuildingService extends AbstractChartBuildingService<
+        PieDataItem[],
+        PieSeries,
+        Pie,
+        org.icepear.echarts.charts.pie.PieSeries,
+        org.icepear.echarts.Pie
+        > {
 
     public PieBuildingService() {
         super(Pie.class);
@@ -26,8 +31,9 @@ public final class PieBuildingService
     }
 
     @Override
-    protected void appendSeries(PieSeries series, org.icepear.echarts.Pie builder) {
-        builder.addSeries(new org.icepear.echarts.charts.pie.PieSeries().setAnimation(false).setData(mapToEchartsDataItems(series)));
+    protected org.icepear.echarts.charts.pie.PieSeries mapToBuilderSeries(PieSeries series) {
+        return new org.icepear.echarts.charts.pie.PieSeries()
+                .setData(mapToEchartsDataItems(series));
     }
 
     private static org.icepear.echarts.charts.pie.PieDataItem[] mapToEchartsDataItems(PieSeries series) {
