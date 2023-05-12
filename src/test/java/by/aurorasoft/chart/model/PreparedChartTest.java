@@ -2,6 +2,7 @@ package by.aurorasoft.chart.model;
 
 import by.aurorasoft.chart.model.chart.format.ChartFormat;
 import by.aurorasoft.chart.model.chart.format.formatter.ChartFormatter;
+import by.aurorasoft.chart.model.chart.format.formatter.ChartToHtmlFormatter;
 import org.icepear.echarts.Chart;
 import org.icepear.echarts.render.Engine;
 import org.junit.After;
@@ -14,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.lang.reflect.Field;
+import java.util.function.Supplier;
 
 import static by.aurorasoft.chart.model.chart.format.ChartFormat.HTML;
 import static org.junit.Assert.assertArrayEquals;
@@ -26,6 +28,7 @@ public final class PreparedChartTest {
     private static final String FIELD_NAME_FORMATTER = "formatter";
 
     private static final ChartFormat FORMAT_WITH_MOCKED_FORMATTER = HTML;
+    private static final Supplier<? extends ChartFormatter> GENERAL_FORMATTER_FACTORY = ChartToHtmlFormatter::new;
 
     @Mock
     private ChartFormatter mockedFormatter;
@@ -42,7 +45,7 @@ public final class PreparedChartTest {
     @After
     public void injectGeneralFormatter()
             throws Exception {
-        injectFormatter(FORMAT_WITH_MOCKED_FORMATTER, this.mockedFormatter);
+        injectFormatter(FORMAT_WITH_MOCKED_FORMATTER, GENERAL_FORMATTER_FACTORY.get());
     }
 
     @Test
