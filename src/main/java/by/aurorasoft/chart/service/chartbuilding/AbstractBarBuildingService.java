@@ -4,10 +4,12 @@ import by.aurorasoft.chart.model.chart.AbstractBar;
 import by.aurorasoft.chart.model.series.BarSeries;
 import org.icepear.echarts.Bar;
 
-public abstract class AbstractBarBuildingService<C extends AbstractBar>
-        extends CartesianCoordinateChartBuildingService<Number[], BarSeries, C, Bar> {
+public abstract class AbstractBarBuildingService<CHART extends AbstractBar>
+        extends CartesianCoordinateChartBuildingService<
+        Number[], BarSeries, CHART, org.icepear.echarts.charts.bar.BarSeries, Bar
+        > {
 
-    public AbstractBarBuildingService(Class<C> sourceType) {
+    public AbstractBarBuildingService(Class<CHART> sourceType) {
         super(sourceType);
     }
 
@@ -15,11 +17,4 @@ public abstract class AbstractBarBuildingService<C extends AbstractBar>
     protected final org.icepear.echarts.Bar createBuilder() {
         return new org.icepear.echarts.Bar();
     }
-
-    @Override
-    protected final void appendSeries(BarSeries barSeries, Bar builder) {
-        builder.addSeries(this.mapToEchartsBarSeries(barSeries));
-    }
-
-    protected abstract org.icepear.echarts.charts.bar.BarSeries mapToEchartsBarSeries(BarSeries barSeries);
 }
