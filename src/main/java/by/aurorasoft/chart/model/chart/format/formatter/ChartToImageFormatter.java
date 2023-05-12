@@ -6,6 +6,7 @@ import org.icepear.echarts.render.Engine;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import static org.openqa.selenium.OutputType.BYTES;
  */
 public final class ChartToImageFormatter implements ChartFormatter {
     private static final String TEMPLATE_PATH_NAME_TEMP_FILE = "temp-%d.html";
+    private static final String ARGUMENT_CHROME_OPTIONS_TO_HIDE_OPENING_BROWSER = "--headless";
 
     @Override
     public byte[] format(Chart<?, ?> chart, Engine engine) {
@@ -61,12 +63,18 @@ public final class ChartToImageFormatter implements ChartFormatter {
     }
 
     private static byte[] screenChart(File file) {
-        final WebDriver driver = new ChromeDriver();
+        final WebDriver driver = createWebDriver();
         try {
             driver.get(file.toURI().toString());
             return ((TakesScreenshot) driver).getScreenshotAs(BYTES);
         } finally {
             driver.quit();
         }
+    }
+
+    private static WebDriver createWebDriver() {
+        final ChromeOptions chromeOptions = new ChromeOptions()
+                .addArguments(ARGUMENT_CHROME_OPTIONS_TO_HIDE_OPENING_BROWSER);
+        return new ChromeDriver(chromeOptions);
     }
 }
