@@ -13,11 +13,11 @@ public abstract class AbstractStackBarBuildingService<C extends StackBar>
     }
 
     @Override
-    protected final org.icepear.echarts.charts.bar.BarSeries mapToBuilderSeries(BarSeries series) {
+    protected final org.icepear.echarts.charts.bar.BarSeries mapToBuilderSeries(BarSeries sourceSeries) {
         return new org.icepear.echarts.charts.bar.BarSeries()
                 .setStack(BAR_SERIES_STACK_VALUE)
                 .setEmphasis(new BarEmphasis())
-                .setData(series.getValue());
+                .setData(sourceSeries.getValue());
     }
 
 }
