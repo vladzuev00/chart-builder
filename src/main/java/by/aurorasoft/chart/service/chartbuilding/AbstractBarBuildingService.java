@@ -5,7 +5,7 @@ import by.aurorasoft.chart.model.series.BarSeries;
 import org.icepear.echarts.Bar;
 
 public abstract class AbstractBarBuildingService<C extends AbstractBar>
-        extends CartesianCoordinateCharBuildingService<Number[], BarSeries, C, org.icepear.echarts.Bar> {
+        extends CartesianCoordinateChartBuildingService<Number[], BarSeries, C, Bar> {
 
     public AbstractBarBuildingService(Class<C> sourceType) {
         super(sourceType);

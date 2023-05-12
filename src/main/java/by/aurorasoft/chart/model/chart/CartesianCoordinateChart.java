@@ -9,11 +9,12 @@ import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
 
-@Getter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public abstract class CartesianCoordinateChart<S extends Series<?>> extends Chart<S> {
     private final String axisXName;
+
+    @Getter
     private final String[] axisXValues;
     private final String axisYName;
 
