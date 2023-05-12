@@ -34,7 +34,7 @@ public final class StackBarWithLineBuildingService extends AbstractStackBarBuild
     }
 
     private static String findLineAxisYName(StackBarWithLine source) {
-        final Optional<String> optionalName = source.findAxisYName();
+        final Optional<String> optionalName = source.findLineAxisYName();
         return optionalName.orElse(DEFAULT_LINE_AXIS_Y_NAME);
     }
 

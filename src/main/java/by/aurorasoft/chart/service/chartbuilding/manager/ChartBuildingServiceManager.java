@@ -15,9 +15,9 @@ import static java.util.stream.Collectors.toMap;
 
 @Service
 public final class ChartBuildingServiceManager {
-    private final Map<Class<? extends Chart<?>>, AbstractChartBuildingService<?, ?, ?, ?>> buildingServicesBySourceTypes;
+    private final Map<Class<? extends Chart<?>>, AbstractChartBuildingService<?, ?, ?, ?, ?>> buildingServicesBySourceTypes;
 
-    public ChartBuildingServiceManager(List<AbstractChartBuildingService<?, ?, ?, ?>> buildingServices) {
+    public ChartBuildingServiceManager(List<AbstractChartBuildingService<?, ?, ?, ?, ?>> buildingServices) {
         this.buildingServicesBySourceTypes = buildingServices.stream()
                 .collect(
                         collectingAndThen(
@@ -28,13 +28,13 @@ public final class ChartBuildingServiceManager {
     }
 
     public PreparedChart build(Chart<?> source) {
-        final AbstractChartBuildingService<?, ?, ?, ?> buildingService = this.findBuildingService(source);
+        final AbstractChartBuildingService<?, ?, ?, ?, ?> buildingService = this.findBuildingService(source);
         return buildingService.build(source);
     }
 
-    private AbstractChartBuildingService<?, ?, ?, ?> findBuildingService(Chart<?> source) {
+    private AbstractChartBuildingService<?, ?, ?, ?, ?> findBuildingService(Chart<?> source) {
         final Class<?> chartType = source.getClass();
-        final AbstractChartBuildingService<?, ?, ?, ?> buildingService = this.buildingServicesBySourceTypes.get(
+        final AbstractChartBuildingService<?, ?, ?, ?, ?> buildingService = this.buildingServicesBySourceTypes.get(
                 chartType
         );
         if (buildingService == null) {
