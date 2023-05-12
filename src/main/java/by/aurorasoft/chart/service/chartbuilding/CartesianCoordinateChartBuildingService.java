@@ -21,10 +21,13 @@ public abstract class CartesianCoordinateChartBuildingService<
     }
 
     @Override
-    protected void appendSpecialProperties(CHART source, BUILDER builder) {
+    protected final void appendSpecialProperties(CHART source, BUILDER builder) {
         this.appendAxisX(source, builder);
         this.appendAxisY(source, builder);
+        this.appendSpecialPropertiesExceptBarAxis(source, builder);
     }
+
+    protected abstract void appendSpecialPropertiesExceptBarAxis(CHART source, BUILDER builder);
 
     private void appendAxisX(CHART source, BUILDER builder) {
         final Optional<String> optionalAxisXName = source.findAxisXName();

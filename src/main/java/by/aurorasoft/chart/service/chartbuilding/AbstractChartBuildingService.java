@@ -46,13 +46,19 @@ public abstract class AbstractChartBuildingService<
     private void appendSeries(CHART source, BUILDER builder) {
         final SERIES[] series = source.getSeries();
         stream(series)
-                .map(this::mapToBuilderSeriesWithoutAnimation)
+                .map(this::mapToBuilderSeriesWithNameAndWithoutAnimation)
                 .forEach(builder::addSeries);
     }
 
-    private BUILDER_SERIES mapToBuilderSeriesWithoutAnimation(SERIES series) {
-        final BUILDER_SERIES builderSeries = this.mapToBuilderSeries(series);
+    private BUILDER_SERIES mapToBuilderSeriesWithNameAndWithoutAnimation(SERIES sourceSeries) {
+        final BUILDER_SERIES builderSeries = this.mapToBuilderSeries(sourceSeries);
         builderSeries.setAnimation(false);
+        appendName(sourceSeries, builderSeries);
         return builderSeries;
+    }
+
+    private void appendName(SERIES sourceSeries, BUILDER_SERIES builderSeries) {
+        final Optional<String> optionalName = sourceSeries.findName();
+        optionalName.ifPresent(builderSeries::setName);
     }
 }
