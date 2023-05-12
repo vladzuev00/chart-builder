@@ -18,6 +18,6 @@ public final class StackBarWithLineBuildingService extends AbstractStackBarBuild
     protected void appendSpecialProperties(StackBarWithLine source, Bar builder) {
         super.appendSpecialProperties(source, builder);
         builder.addYAxis(new ValueAxis().setName(source.findLineAxisYName().get()).setPosition("right"));
-        builder.addSeries(new BarSeries().setYAxisIndex(1).setType("line").setData(source.getLineValues()));
+        builder.addSeries(new BarSeries().setYAxisIndex(1).setType("line").setData(source.getLineValues()).setAnimation(false));
     }
 }

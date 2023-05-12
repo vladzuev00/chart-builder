@@ -67,13 +67,13 @@ public final class ChartToImageFormatter implements ChartFormatter {
         final WebDriver driver = new ChromeDriver();
         try {
             driver.get(file.toURI().toString());
-            waitChartLoading();
+//            waitChartLoading();
             return ((TakesScreenshot) driver).getScreenshotAs(BYTES);
         }
-        catch (final InterruptedException cause) {
-            currentThread().interrupt();
-            throw new ScreeningChartException(cause);
-        }
+//        catch (final InterruptedException cause) {
+//            currentThread().interrupt();
+//            throw new ScreeningChartException(cause);
+//        }
         finally {
             driver.quit();
         }

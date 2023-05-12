@@ -27,7 +27,7 @@ public final class PieBuildingService
 
     @Override
     protected void appendSeries(PieSeries series, org.icepear.echarts.Pie builder) {
-        builder.addSeries(mapToEchartsDataItems(series));
+        builder.addSeries(new org.icepear.echarts.charts.pie.PieSeries().setAnimation(false).setData(mapToEchartsDataItems(series)));
     }
 
     private static org.icepear.echarts.charts.pie.PieDataItem[] mapToEchartsDataItems(PieSeries series) {

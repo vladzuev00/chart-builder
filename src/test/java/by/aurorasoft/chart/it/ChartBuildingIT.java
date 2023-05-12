@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.stream.Stream;
 
 import static by.aurorasoft.chart.model.chart.format.ChartFormat.*;
@@ -137,7 +138,7 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
                 "    </div>\n" +
                 "    <script type=\"text/javascript\">\n" +
                 "        var chart = echarts.init(document.getElementById(\"display-container\")); \n" +
-                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Matcha Latte\",\"Milk Tea\",\"Cheese Cocoa\",\"Walnut Brownie\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"2015\",\"data\":[43.3,83.1,86.4,72.4]},{\"type\":\"bar\",\"name\":\"2016\",\"data\":[44.3,84.1,87.4,73.4]},{\"type\":\"bar\",\"name\":\"2017\",\"data\":[45.3,85.1,88.4,74.4]}]}\n" +
+                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Matcha Latte\",\"Milk Tea\",\"Cheese Cocoa\",\"Walnut Brownie\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"2015\",\"animation\":false,\"data\":[43.3,83.1,86.4,72.4]},{\"type\":\"bar\",\"name\":\"2016\",\"animation\":false,\"data\":[44.3,84.1,87.4,73.4]},{\"type\":\"bar\",\"name\":\"2017\",\"animation\":false,\"data\":[45.3,85.1,88.4,74.4]}]}\n" +
                 "        chart.setOption(option);\n" +
                 "    </script>\n" +
                 "</body>\n" +
@@ -146,7 +147,7 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
     }
 
     private static String createBarJson() {
-        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Matcha Latte\",\"Milk Tea\",\"Cheese Cocoa\",\"Walnut Brownie\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"2015\",\"data\":[43.3,83.1,86.4,72.4]},{\"type\":\"bar\",\"name\":\"2016\",\"data\":[44.3,84.1,87.4,73.4]},{\"type\":\"bar\",\"name\":\"2017\",\"data\":[45.3,85.1,88.4,74.4]}]}";
+        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Matcha Latte\",\"Milk Tea\",\"Cheese Cocoa\",\"Walnut Brownie\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"2015\",\"animation\":false,\"data\":[43.3,83.1,86.4,72.4]},{\"type\":\"bar\",\"name\":\"2016\",\"animation\":false,\"data\":[44.3,84.1,87.4,73.4]},{\"type\":\"bar\",\"name\":\"2017\",\"animation\":false,\"data\":[45.3,85.1,88.4,74.4]}]}";
     }
 
     private static StackBar createStackBar() {
@@ -188,7 +189,7 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
                 "    </div>\n" +
                 "    <script type=\"text/javascript\">\n" +
                 "        var chart = echarts.init(document.getElementById(\"display-container\")); \n" +
-                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"}]}\n" +
+                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"}]}\n" +
                 "        chart.setOption(option);\n" +
                 "    </script>\n" +
                 "</body>\n" +
@@ -197,7 +198,7 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
     }
 
     private static String createStackBarJson() {
-        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"}]}";
+        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"}]}";
     }
 
     private static StackBarWithLine createStackBarWithLine() {
@@ -241,7 +242,7 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
                 "    </div>\n" +
                 "    <script type=\"text/javascript\">\n" +
                 "        var chart = echarts.init(document.getElementById(\"display-container\")); \n" +
-                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"},{\"position\":\"right\",\"type\":\"value\",\"name\":\"line-value\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"},{\"type\":\"line\",\"data\":[150,230,224,218,135,147,260],\"yAxisIndex\":1}]}\n" +
+                "        var option = {\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"},{\"position\":\"right\",\"type\":\"value\",\"name\":\"line-value\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"},{\"type\":\"line\",\"animation\":false,\"data\":[150,230,224,218,135,147,260],\"yAxisIndex\":1}]}\n" +
                 "        chart.setOption(option);\n" +
                 "    </script>\n" +
                 "</body>\n" +
@@ -250,7 +251,7 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
     }
 
     private static String createStackBarWithLineJson() {
-        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"},{\"position\":\"right\",\"type\":\"value\",\"name\":\"line-value\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"},{\"type\":\"line\",\"data\":[150,230,224,218,135,147,260],\"yAxisIndex\":1}]}";
+        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"},{\"position\":\"right\",\"type\":\"value\",\"name\":\"line-value\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"},{\"type\":\"line\",\"animation\":false,\"data\":[150,230,224,218,135,147,260],\"yAxisIndex\":1}]}";
     }
 
     private static Pie createPie() {
@@ -289,7 +290,7 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
                 "    </div>\n" +
                 "    <script type=\"text/javascript\">\n" +
                 "        var chart = echarts.init(document.getElementById(\"display-container\")); \n" +
-                "        var option = {\"title\":{\"text\":\"title\"},\"series\":[{\"type\":\"pie\",\"data\":[{\"name\":\"item1\",\"value\":50.0},{\"name\":\"item2\",\"value\":75.0},{\"name\":\"item3\",\"value\":150.0}]}]}\n" +
+                "        var option = {\"title\":{\"text\":\"title\"},\"series\":[{\"type\":\"pie\",\"animation\":false,\"data\":[{\"name\":\"item1\",\"value\":50.0},{\"name\":\"item2\",\"value\":75.0},{\"name\":\"item3\",\"value\":150.0}]}]}\n" +
                 "        chart.setOption(option);\n" +
                 "    </script>\n" +
                 "</body>\n" +
@@ -298,7 +299,7 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
     }
 
     private static String createPieJson() {
-        return "{\"title\":{\"text\":\"title\"},\"series\":[{\"type\":\"pie\",\"data\":[{\"name\":\"item1\",\"value\":50.0},{\"name\":\"item2\",\"value\":75.0},{\"name\":\"item3\",\"value\":150.0}]}]}";
+        return "{\"title\":{\"text\":\"title\"},\"series\":[{\"type\":\"pie\",\"animation\":false,\"data\":[{\"name\":\"item1\",\"value\":50.0},{\"name\":\"item2\",\"value\":75.0},{\"name\":\"item3\",\"value\":150.0}]}]}";
     }
 
     private static BufferedImage readImage(String filePathName)
