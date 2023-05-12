@@ -7,44 +7,19 @@ import by.aurorasoft.chart.model.series.BarSeries;
 import by.aurorasoft.chart.model.series.PieSeries;
 import by.aurorasoft.chart.model.series.PieSeries.PieDataItem;
 import by.aurorasoft.chart.service.chartbuilding.manager.ChartBuildingServiceManager;
-import com.github.romankh3.image.comparison.ImageComparison;
-import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.stream.Stream;
 
 import static by.aurorasoft.chart.model.chart.format.ChartFormat.*;
-import static com.github.romankh3.image.comparison.model.ImageComparisonState.MATCH;
-import static java.io.File.separator;
-import static java.nio.charset.StandardCharsets.UTF_8;
-import static javax.imageio.ImageIO.read;
+import static by.aurorasoft.chart.util.ChartImageUtil.*;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertSame;
 
 public final class ChartBuildingIT extends AbstractSpringBootTest {
-    private static final String PATH_NAME_CHART_DIRECTORY = "./src/test/resources/charts";
-
-    private static final String FILE_NAME_IMAGE_BAR = "bar.png";
-    private static final String PATH_NAME_IMAGE_BAR
-            = PATH_NAME_CHART_DIRECTORY + separator + FILE_NAME_IMAGE_BAR;
-
-    private static final String FILE_NAME_IMAGE_STACK_BAR = "stack-bar.png";
-    private static final String PATH_NAME_IMAGE_STACK_BAR
-            = PATH_NAME_CHART_DIRECTORY + separator + FILE_NAME_IMAGE_STACK_BAR;
-
-    private static final String FILE_NAME_IMAGE_STACK_BAR_WITH_LINE = "stack-bar-with-line.png";
-    private static final String PATH_NAME_IMAGE_STACK_BAR_WITH_LINE
-            = PATH_NAME_CHART_DIRECTORY + separator + FILE_NAME_IMAGE_STACK_BAR_WITH_LINE;
-
-    private static final String FILE_NAME_IMAGE_PIE = "pie.png";
-    private static final String PATH_NAME_IMAGE_PIE
-            = PATH_NAME_CHART_DIRECTORY + separator + FILE_NAME_IMAGE_PIE;
 
     @Autowired
     private ChartBuildingServiceManager buildingServiceManager;
@@ -300,28 +275,5 @@ public final class ChartBuildingIT extends AbstractSpringBootTest {
 
     private static String createPieJson() {
         return "{\"title\":{\"text\":\"title\"},\"series\":[{\"type\":\"pie\",\"animation\":false,\"data\":[{\"name\":\"item1\",\"value\":50.0},{\"name\":\"item2\",\"value\":75.0},{\"name\":\"item3\",\"value\":150.0}]}]}";
-    }
-
-    private static BufferedImage readImage(String filePathName)
-            throws IOException {
-        final File file = new File(filePathName);
-        return read(file);
-    }
-
-    private static BufferedImage createImage(byte[] bytes)
-            throws IOException {
-        try (final ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes)) {
-            return read(inputStream);
-        }
-    }
-
-    private static byte[] transformToBytes(String source) {
-        return source.getBytes(UTF_8);
-    }
-
-    private static void checkEquals(BufferedImage expected, BufferedImage actual) {
-        final ImageComparisonResult imageComparisonResult = new ImageComparison(expected, actual)
-                .compareImages();
-        assertSame(MATCH, imageComparisonResult.getImageComparisonState());
     }
 }
