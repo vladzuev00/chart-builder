@@ -13,6 +13,7 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toMap;
 
+//TODO: test
 @Service
 public final class ChartBuildingServiceManager {
     private final Map<Class<? extends Chart<?>>, AbstractChartBuildingService<?, ?, ?, ?, ?>> buildingServicesBySourceTypes;
