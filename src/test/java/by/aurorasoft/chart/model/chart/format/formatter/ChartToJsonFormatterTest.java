@@ -9,20 +9,20 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public final class ChartToHtmlFormatterTest {
+public final class ChartToJsonFormatterTest {
 
-    private final ChartToHtmlFormatter formatter = new ChartToHtmlFormatter();
+    private final ChartToJsonFormatter formatter = new ChartToJsonFormatter();
 
     @Test
     public void chartShouldBeFormattedToString() {
         final Chart<?, ?> givenChart = mock(Chart.class);
         final Engine givenEngine = mock(Engine.class);
 
-        final String givenHtml = "html";
-        when(givenEngine.renderHtml(any(Chart.class))).thenReturn(givenHtml);
+        final String givenJson = "json";
+        when(givenEngine.renderJsonOption(any(Chart.class))).thenReturn(givenJson);
 
         final String actual = this.formatter.formatToString(givenChart, givenEngine);
-        assertEquals(givenHtml, actual);
+        assertEquals(givenJson, actual);
     }
 
 }
