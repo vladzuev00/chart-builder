@@ -7,7 +7,6 @@ import org.icepear.echarts.origin.util.SeriesOption;
 
 import java.util.Optional;
 
-//TODO: test
 public abstract class CartesianCoordinateChartBuildingService<
         SERIES_VALUE,
         SERIES extends Series<SERIES_VALUE>,

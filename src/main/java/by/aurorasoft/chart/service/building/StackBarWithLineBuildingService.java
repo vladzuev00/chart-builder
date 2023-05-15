@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-//TODO: test
 @Service
 public final class StackBarWithLineBuildingService extends AbstractStackBarBuildingService<StackBarWithLine> {
     private static final String DEFAULT_LINE_AXIS_Y_NAME = "";
