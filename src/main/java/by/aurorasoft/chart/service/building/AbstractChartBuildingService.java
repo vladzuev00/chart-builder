@@ -49,11 +49,11 @@ public abstract class AbstractChartBuildingService<
     private void appendSeries(CHART source, BUILDER builder) {
         final SERIES[] series = source.getSeries();
         stream(series)
-                .map(this::mapToBuilderSeriesWithNameAndValueAndWithoutAnimation)
+                .map(this::mapToBuilderSeries)
                 .forEach(builder::addSeries);
     }
 
-    private BUILDER_SERIES mapToBuilderSeriesWithNameAndValueAndWithoutAnimation(SERIES sourceSeries) {
+    private BUILDER_SERIES mapToBuilderSeries(SERIES sourceSeries) {
         final BUILDER_SERIES builderSeries = this.createBuilderSeries();
         builderSeries.setAnimation(false);
         appendName(sourceSeries, builderSeries);
