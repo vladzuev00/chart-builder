@@ -28,7 +28,7 @@ public final class AbstractBarBuildingServiceTest {
         }
 
         @Override
-        protected void appendSpecialPropertiesExceptBarAxis(AbstractBar source, Bar bar) {
+        protected void appendSpecialPropertiesExceptAxis(AbstractBar source, Bar bar) {
             throw new UnsupportedOperationException();
         }
     }

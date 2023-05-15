@@ -22,7 +22,7 @@ public final class StackBarWithLineBuildingService extends AbstractStackBarBuild
     }
 
     @Override
-    protected void appendSpecialPropertiesExceptBarAxis(StackBarWithLine source, Bar builder) {
+    protected void appendSpecialPropertiesExceptAxis(StackBarWithLine source, Bar builder) {
         appendAxisOfLineValues(source, builder);
         appendAxisValuesOfLine(source, builder);
     }

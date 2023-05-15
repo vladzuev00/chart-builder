@@ -38,7 +38,7 @@ public final class AbstractStackBarBuildingServiceTest {
         }
 
         @Override
-        protected void appendSpecialPropertiesExceptBarAxis(StackBar source, Bar bar) {
+        protected void appendSpecialPropertiesExceptAxis(StackBar source, Bar bar) {
 
         }
     }

@@ -17,7 +17,12 @@ public abstract class CartesianCoordinateChartBuildingService<
         BUILDER extends CartesianCoordChart<?, BUILDER_SERIES>
         >
         extends AbstractChartBuildingService<
-        SERIES_VALUE, SERIES, CHART, BUILDER_SERIES_VALUE, BUILDER_SERIES, BUILDER
+        SERIES_VALUE,
+        SERIES,
+        CHART,
+        BUILDER_SERIES_VALUE,
+        BUILDER_SERIES,
+        BUILDER
         > {
 
     public CartesianCoordinateChartBuildingService(Class<CHART> sourceType) {
@@ -28,10 +33,10 @@ public abstract class CartesianCoordinateChartBuildingService<
     protected final void appendSpecialProperties(CHART source, BUILDER builder) {
         this.appendAxisX(source, builder);
         this.appendAxisY(source, builder);
-        this.appendSpecialPropertiesExceptBarAxis(source, builder);
+        this.appendSpecialPropertiesExceptAxis(source, builder);
     }
 
-    protected abstract void appendSpecialPropertiesExceptBarAxis(CHART source, BUILDER builder);
+    protected abstract void appendSpecialPropertiesExceptAxis(CHART source, BUILDER builder);
 
     private void appendAxisX(CHART source, BUILDER builder) {
         final Optional<String> optionalAxisXName = source.findAxisXName();

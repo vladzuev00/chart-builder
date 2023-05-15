@@ -15,7 +15,7 @@ public final class BarBuildingService extends AbstractBarBuildingService<Bar> {
     }
 
     @Override
-    protected void appendSpecialPropertiesExceptBarAxis(Bar source, org.icepear.echarts.Bar bar) {
+    protected void appendSpecialPropertiesExceptAxis(Bar source, org.icepear.echarts.Bar bar) {
 
     }
 }
