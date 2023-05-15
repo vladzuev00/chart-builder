@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import static java.util.Arrays.stream;
 
-//TODO: test
 @Service
 public final class PieBuildingService extends AbstractChartBuildingService<
         PieDataItem[],
         PieSeries,
         Pie,
+        org.icepear.echarts.charts.pie.PieDataItem[],
         org.icepear.echarts.charts.pie.PieSeries,
         org.icepear.echarts.Pie
         > {
@@ -33,13 +33,12 @@ public final class PieBuildingService extends AbstractChartBuildingService<
 
     @Override
     protected org.icepear.echarts.charts.pie.PieSeries mapToBuilderSeries(PieSeries series) {
-        return new org.icepear.echarts.charts.pie.PieSeries()
-                .setData(mapToEchartsDataItems(series));
+        return new org.icepear.echarts.charts.pie.PieSeries();
     }
 
-    private static org.icepear.echarts.charts.pie.PieDataItem[] mapToEchartsDataItems(PieSeries series) {
-        final PieDataItem[] pieDataItems = series.getValue();
-        return stream(pieDataItems)
+    @Override
+    protected org.icepear.echarts.charts.pie.PieDataItem[] mapToBuilderSeriesValue(PieDataItem[] mapped) {
+        return stream(mapped)
                 .map(PieBuildingService::mapToEchartsDataItem)
                 .toArray(org.icepear.echarts.charts.pie.PieDataItem[]::new);
     }

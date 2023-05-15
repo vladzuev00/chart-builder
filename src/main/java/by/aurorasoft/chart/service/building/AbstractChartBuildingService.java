@@ -11,13 +11,13 @@ import java.util.Optional;
 
 import static java.util.Arrays.stream;
 
-//TODO: test
 @Getter
 @RequiredArgsConstructor
 public abstract class AbstractChartBuildingService<
         SERIES_VALUE,
         SERIES extends Series<SERIES_VALUE>,
         CHART extends Chart<SERIES>,
+        BUILDER_SERIES_VALUE,
         BUILDER_SERIES extends SeriesOption,
         BUILDER extends org.icepear.echarts.Chart<?, BUILDER_SERIES>
         > {
@@ -39,6 +39,8 @@ public abstract class AbstractChartBuildingService<
 
     protected abstract BUILDER_SERIES mapToBuilderSeries(SERIES series);
 
+    protected abstract BUILDER_SERIES_VALUE mapToBuilderSeriesValue(SERIES_VALUE mapped);
+
     private void appendTitle(CHART source, BUILDER builder) {
         final Optional<String> optionalTitle = source.findTitle();
         optionalTitle.ifPresent(builder::setTitle);
@@ -47,19 +49,26 @@ public abstract class AbstractChartBuildingService<
     private void appendSeries(CHART source, BUILDER builder) {
         final SERIES[] series = source.getSeries();
         stream(series)
-                .map(this::mapToBuilderSeriesWithNameAndWithoutAnimation)
+                .map(this::mapToBuilderSeriesWithNameAndValueAndWithoutAnimation)
                 .forEach(builder::addSeries);
     }
 
-    private BUILDER_SERIES mapToBuilderSeriesWithNameAndWithoutAnimation(SERIES sourceSeries) {
+    private BUILDER_SERIES mapToBuilderSeriesWithNameAndValueAndWithoutAnimation(SERIES sourceSeries) {
         final BUILDER_SERIES builderSeries = this.mapToBuilderSeries(sourceSeries);
         builderSeries.setAnimation(false);
         appendName(sourceSeries, builderSeries);
+        appendValue(sourceSeries, builderSeries);
         return builderSeries;
     }
 
     private void appendName(SERIES sourceSeries, BUILDER_SERIES builderSeries) {
         final Optional<String> optionalName = sourceSeries.findName();
         optionalName.ifPresent(builderSeries::setName);
+    }
+
+    private void appendValue(SERIES sourceSeries, BUILDER_SERIES builderSeries) {
+        final SERIES_VALUE sourceSeriesValue = sourceSeries.getValue();
+        final BUILDER_SERIES_VALUE builderSeriesValue = this.mapToBuilderSeriesValue(sourceSeriesValue);
+        builderSeries.setData(builderSeriesValue);
     }
 }
