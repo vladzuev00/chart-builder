@@ -13,6 +13,7 @@ public final class BarBuildingService extends AbstractBarBuildingService<Bar> {
     @Override
     protected org.icepear.echarts.charts.bar.BarSeries mapToBuilderSeries(BarSeries sourceSeries) {
         return new org.icepear.echarts.charts.bar.BarSeries()
+                //TODO: put set data in superClass if possible
                 .setData(sourceSeries.getValue());
     }
 

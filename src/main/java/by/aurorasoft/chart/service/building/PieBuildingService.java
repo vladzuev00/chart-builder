@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import static java.util.Arrays.stream;
 
+//TODO: test
 @Service
 public final class PieBuildingService extends AbstractChartBuildingService<
         PieDataItem[],
