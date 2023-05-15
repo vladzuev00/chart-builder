@@ -13,7 +13,6 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toMap;
 
-//TODO: test
 @Service
 public final class ChartBuildingServiceManager {
     private final Map<Class<? extends Chart<?>>, AbstractChartBuildingService<?, ?, ?, ?, ?, ?>> buildingServicesBySourceTypes;
@@ -39,7 +38,7 @@ public final class ChartBuildingServiceManager {
                 chartType
         );
         if (buildingService == null) {
-            throw new IllegalStateException(format("There is no service to build chart by source '%s'", source));
+            throw new IllegalArgumentException(format("There is no service to build chart by source '%s'", source));
         }
         return buildingService;
     }
