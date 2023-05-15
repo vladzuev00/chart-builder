@@ -12,10 +12,13 @@ public abstract class CartesianCoordinateChartBuildingService<
         SERIES_VALUE,
         SERIES extends Series<SERIES_VALUE>,
         CHART extends CartesianCoordinateChart<SERIES>,
+        BUILDER_SERIES_VALUE,
         BUILDER_SERIES extends SeriesOption,
         BUILDER extends CartesianCoordChart<?, BUILDER_SERIES>
         >
-        extends AbstractChartBuildingService<SERIES_VALUE, SERIES, CHART, BUILDER_SERIES, BUILDER> {
+        extends AbstractChartBuildingService<
+        SERIES_VALUE, SERIES, CHART, BUILDER_SERIES_VALUE, BUILDER_SERIES, BUILDER
+        > {
 
     public CartesianCoordinateChartBuildingService(Class<CHART> sourceType) {
         super(sourceType);
