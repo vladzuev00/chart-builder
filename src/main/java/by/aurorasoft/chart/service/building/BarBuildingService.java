@@ -1,6 +1,7 @@
 package by.aurorasoft.chart.service.building;
 
 import by.aurorasoft.chart.model.chart.Bar;
+import org.icepear.echarts.charts.bar.BarSeries;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,8 +11,8 @@ public final class BarBuildingService extends AbstractBarBuildingService<Bar> {
     }
 
     @Override
-    protected org.icepear.echarts.charts.bar.BarSeries createBuilderSeries() {
-        return new org.icepear.echarts.charts.bar.BarSeries();
+    protected void configureBuilderSeries(BarSeries builderSeries) {
+
     }
 
     @Override

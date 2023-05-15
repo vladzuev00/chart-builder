@@ -23,7 +23,7 @@ public final class AbstractBarBuildingServiceTest {
         }
 
         @Override
-        protected BarSeries createBuilderSeries() {
+        protected void configureBuilderSeries(BarSeries builderSeries) {
             throw new UnsupportedOperationException();
         }
 

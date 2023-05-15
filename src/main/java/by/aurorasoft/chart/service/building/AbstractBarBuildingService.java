@@ -26,4 +26,14 @@ public abstract class AbstractBarBuildingService<CHART extends AbstractBar>
     protected final Number[] mapToBuilderSeriesValue(Number[] mapped) {
         return mapped;
     }
+
+    @Override
+    protected final org.icepear.echarts.charts.bar.BarSeries createBuilderSeries() {
+        final org.icepear.echarts.charts.bar.BarSeries builderSeries
+                = new org.icepear.echarts.charts.bar.BarSeries();
+        this.configureBuilderSeries(builderSeries);
+        return builderSeries;
+    }
+
+    protected abstract void configureBuilderSeries(org.icepear.echarts.charts.bar.BarSeries builderSeries);
 }
