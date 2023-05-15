@@ -23,9 +23,8 @@ public abstract class AbstractChartBuildingService<
         > {
     private final Class<CHART> sourceType;
 
-    @SuppressWarnings("unchecked")
     public final PreparedChart build(Chart<?> source) {
-        final CHART concreteSource = (CHART) source;
+        final CHART concreteSource = this.sourceType.cast(source);
         final BUILDER builder = this.createBuilder();
         this.appendTitle(concreteSource, builder);
         this.appendSeries(concreteSource, builder);
@@ -56,8 +55,8 @@ public abstract class AbstractChartBuildingService<
     private BUILDER_SERIES mapToBuilderSeries(SERIES sourceSeries) {
         final BUILDER_SERIES builderSeries = this.createBuilderSeries();
         builderSeries.setAnimation(false);
-        appendName(sourceSeries, builderSeries);
-        appendValue(sourceSeries, builderSeries);
+        this.appendName(sourceSeries, builderSeries);
+        this.appendValue(sourceSeries, builderSeries);
         return builderSeries;
     }
 
