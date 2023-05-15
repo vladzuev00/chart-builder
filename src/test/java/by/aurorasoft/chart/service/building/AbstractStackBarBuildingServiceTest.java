@@ -1,9 +1,9 @@
 package by.aurorasoft.chart.service.building;
 
 import by.aurorasoft.chart.model.chart.StackBar;
-import by.aurorasoft.chart.model.series.BarSeries;
 import org.icepear.echarts.Bar;
 import org.icepear.echarts.charts.bar.BarEmphasis;
+import org.icepear.echarts.charts.bar.BarSeries;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,21 +14,14 @@ public final class AbstractStackBarBuildingServiceTest {
     private final AbstractStackBarBuildingService<StackBar> buildingService = new TestStackBarBuildingService();
 
     @Test
-    public void sourceSeriesShouldBeMappedToBuilderSeries() {
-//        final BarSeries givenSourceSeries = new BarSeries(
-//                "name",
-//                new Number[]{1, 2, 3}
-//        );
-//
-//        final org.icepear.echarts.charts.bar.BarSeries actual = this.buildingService.createBuilderSeries(
-//                givenSourceSeries
-//        );
-//        final org.icepear.echarts.charts.bar.BarSeries expected = new org.icepear.echarts.charts.bar.BarSeries()
-//                .setStack(BAR_SERIES_STACK_VALUE)
-//                .setEmphasis(new BarEmphasis())
-//                .setData(givenSourceSeries.getValue());
-//        assertEquals(expected, actual);
-        throw new RuntimeException();
+    public void builderServiceShouldBeConfigured() {
+        final BarSeries givenBarSeries = new BarSeries();
+        this.buildingService.configureBuilderSeries(givenBarSeries);
+
+        final BarSeries expected = new BarSeries()
+                .setStack(BAR_SERIES_STACK_VALUE)
+                .setEmphasis(new BarEmphasis());
+        assertEquals(expected, givenBarSeries);
     }
 
     private static final class TestStackBarBuildingService extends AbstractStackBarBuildingService<StackBar> {
