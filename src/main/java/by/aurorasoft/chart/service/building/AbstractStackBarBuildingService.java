@@ -16,8 +16,7 @@ public abstract class AbstractStackBarBuildingService<C extends StackBar>
     protected final org.icepear.echarts.charts.bar.BarSeries mapToBuilderSeries(BarSeries sourceSeries) {
         return new org.icepear.echarts.charts.bar.BarSeries()
                 .setStack(BAR_SERIES_STACK_VALUE)
-                .setEmphasis(new BarEmphasis())
-                .setData(sourceSeries.getValue());
+                .setEmphasis(new BarEmphasis());
     }
 
 }
