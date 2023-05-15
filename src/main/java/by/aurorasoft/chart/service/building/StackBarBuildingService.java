@@ -4,7 +4,6 @@ import by.aurorasoft.chart.model.chart.StackBar;
 import org.icepear.echarts.Bar;
 import org.springframework.stereotype.Service;
 
-//TODO: test
 @Service
 public final class StackBarBuildingService extends AbstractStackBarBuildingService<StackBar> {
 
