@@ -37,7 +37,7 @@ public abstract class AbstractChartBuildingService<
 
     protected abstract void appendSpecialProperties(CHART source, BUILDER builder);
 
-    protected abstract BUILDER_SERIES mapToBuilderSeries(SERIES series);
+    protected abstract BUILDER_SERIES createBuilderSeries();
 
     protected abstract BUILDER_SERIES_VALUE mapToBuilderSeriesValue(SERIES_VALUE mapped);
 
@@ -54,7 +54,7 @@ public abstract class AbstractChartBuildingService<
     }
 
     private BUILDER_SERIES mapToBuilderSeriesWithNameAndValueAndWithoutAnimation(SERIES sourceSeries) {
-        final BUILDER_SERIES builderSeries = this.mapToBuilderSeries(sourceSeries);
+        final BUILDER_SERIES builderSeries = this.createBuilderSeries();
         builderSeries.setAnimation(false);
         appendName(sourceSeries, builderSeries);
         appendValue(sourceSeries, builderSeries);

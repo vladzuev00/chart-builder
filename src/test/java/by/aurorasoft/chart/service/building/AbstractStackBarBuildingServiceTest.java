@@ -15,19 +15,20 @@ public final class AbstractStackBarBuildingServiceTest {
 
     @Test
     public void sourceSeriesShouldBeMappedToBuilderSeries() {
-        final BarSeries givenSourceSeries = new BarSeries(
-                "name",
-                new Number[]{1, 2, 3}
-        );
-
-        final org.icepear.echarts.charts.bar.BarSeries actual = this.buildingService.mapToBuilderSeries(
-                givenSourceSeries
-        );
-        final org.icepear.echarts.charts.bar.BarSeries expected = new org.icepear.echarts.charts.bar.BarSeries()
-                .setStack(BAR_SERIES_STACK_VALUE)
-                .setEmphasis(new BarEmphasis())
-                .setData(givenSourceSeries.getValue());
-        assertEquals(expected, actual);
+//        final BarSeries givenSourceSeries = new BarSeries(
+//                "name",
+//                new Number[]{1, 2, 3}
+//        );
+//
+//        final org.icepear.echarts.charts.bar.BarSeries actual = this.buildingService.createBuilderSeries(
+//                givenSourceSeries
+//        );
+//        final org.icepear.echarts.charts.bar.BarSeries expected = new org.icepear.echarts.charts.bar.BarSeries()
+//                .setStack(BAR_SERIES_STACK_VALUE)
+//                .setEmphasis(new BarEmphasis())
+//                .setData(givenSourceSeries.getValue());
+//        assertEquals(expected, actual);
+        throw new RuntimeException();
     }
 
     private static final class TestStackBarBuildingService extends AbstractStackBarBuildingService<StackBar> {

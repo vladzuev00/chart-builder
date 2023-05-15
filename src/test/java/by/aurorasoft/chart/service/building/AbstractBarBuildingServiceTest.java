@@ -23,7 +23,7 @@ public final class AbstractBarBuildingServiceTest {
         }
 
         @Override
-        protected BarSeries mapToBuilderSeries(by.aurorasoft.chart.model.series.BarSeries series) {
+        protected BarSeries createBuilderSeries() {
             throw new UnsupportedOperationException();
         }
 

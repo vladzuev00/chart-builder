@@ -32,7 +32,7 @@ public final class PieBuildingService extends AbstractChartBuildingService<
     }
 
     @Override
-    protected org.icepear.echarts.charts.pie.PieSeries mapToBuilderSeries(PieSeries series) {
+    protected org.icepear.echarts.charts.pie.PieSeries createBuilderSeries() {
         return new org.icepear.echarts.charts.pie.PieSeries();
     }
 
