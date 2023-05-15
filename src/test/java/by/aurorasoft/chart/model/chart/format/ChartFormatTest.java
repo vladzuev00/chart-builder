@@ -1,6 +1,5 @@
 package by.aurorasoft.chart.model.chart.format;
 
-import by.aurorasoft.chart.model.chart.format.ChartFormat;
 import by.aurorasoft.chart.model.chart.format.formatter.ChartFormatter;
 import by.aurorasoft.chart.model.chart.format.formatter.ChartToHtmlFormatter;
 import by.aurorasoft.chart.model.chart.format.formatter.ChartToImageFormatter;
