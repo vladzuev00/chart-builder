@@ -5,31 +5,29 @@ import by.aurorasoft.chart.model.series.BarSeries;
 import org.icepear.echarts.Bar;
 import org.icepear.echarts.components.coord.cartesian.ValueAxis;
 import org.icepear.echarts.origin.coord.cartesian.AxisOption;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.assertEquals;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentCaptor.forClass;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
 public final class StackBarWithLineBuildingServiceTest {
+    private static final String DEFAULT_LINE_AXIS_Y_NAME = "";
     private static final String POSITION_VALUE_OF_AXIS_OF_LINE_VALUES = "right";
     private static final int INDEX_OF_AXIS_OF_LINE_VALUES = 1;
     private static final String TYPE_VALUE_OF_LINE = "line";
 
     private final StackBarWithLineBuildingService buildingService = new StackBarWithLineBuildingService();
 
-    @Captor
-    private ArgumentCaptor<AxisOption> axisOptionArgumentCaptor;
-
-    @Captor
-    private ArgumentCaptor<org.icepear.echarts.charts.bar.BarSeries> barSeriesArgumentCaptor;
-
-    @Test
-    public void specialPropertiesExceptAxisShouldBeAppended() {
+    @ParameterizedTest
+    @MethodSource("givenAndExpectedLineAxisYNameProvider")
+    public void specialPropertiesExceptAxisShouldBeAppended(String givenLineAxisYName,
+                                                            String expectedLineAxisYName) {
         final Number[] givenLineValues = new Number[]{150, 230, 224, 218, 135, 147, 260};
         final StackBarWithLine givenSource = new StackBarWithLine(
                 "title",
@@ -43,27 +41,37 @@ public final class StackBarWithLineBuildingServiceTest {
                 "axisXName",
                 new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"},
                 "axisYName",
-                "line-value",
+                givenLineAxisYName,
                 givenLineValues
         );
         final Bar givenBuilder = mock(Bar.class);
 
         this.buildingService.appendSpecialPropertiesExceptAxis(givenSource, givenBuilder);
 
-        verify(givenBuilder, times(1)).addYAxis(this.axisOptionArgumentCaptor.capture());
-        verify(givenBuilder, times(1)).addSeries(this.barSeriesArgumentCaptor.capture());
+        final ArgumentCaptor<AxisOption> axisOptionArgumentCaptor = forClass(AxisOption.class);
+        verify(givenBuilder, times(1)).addYAxis(axisOptionArgumentCaptor.capture());
+
+        final ArgumentCaptor<org.icepear.echarts.charts.bar.BarSeries> barSeriesArgumentCaptor
+                = forClass(org.icepear.echarts.charts.bar.BarSeries.class);
+        verify(givenBuilder, times(1)).addSeries(barSeriesArgumentCaptor.capture());
 
         final AxisOption expectedAxisOfLineValues = new ValueAxis()
-                .setName("line-value")
+                .setName(expectedLineAxisYName)
                 .setPosition(POSITION_VALUE_OF_AXIS_OF_LINE_VALUES);
-        assertEquals(expectedAxisOfLineValues, this.axisOptionArgumentCaptor.getValue());
+        assertEquals(expectedAxisOfLineValues, axisOptionArgumentCaptor.getValue());
 
         final org.icepear.echarts.charts.bar.BarSeries expectedAxisValuesOfLine = new org.icepear.echarts.charts.bar.BarSeries()
                 .setYAxisIndex(INDEX_OF_AXIS_OF_LINE_VALUES)
                 .setType(TYPE_VALUE_OF_LINE)
                 .setData(givenLineValues)
                 .setAnimation(false);
-        assertEquals(expectedAxisValuesOfLine, this.barSeriesArgumentCaptor.getValue());
+        assertEquals(expectedAxisValuesOfLine, barSeriesArgumentCaptor.getValue());
     }
 
+    private static Stream<Arguments> givenAndExpectedLineAxisYNameProvider() {
+        return Stream.of(
+                Arguments.of("line-value", "line-value"),
+                Arguments.of(null, DEFAULT_LINE_AXIS_Y_NAME)
+        );
+    }
 }
