@@ -19,7 +19,6 @@ import static by.aurorasoft.chart.model.chart.format.ChartFormat.*;
 import static by.aurorasoft.chart.util.ChartImageUtil.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-//TODO: correct failing
 public final class ChartBuildingIT extends AbstractSpringBootTest {
 
     @Autowired
