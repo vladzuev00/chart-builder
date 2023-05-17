@@ -1,6 +1,6 @@
 package by.aurorasoft.chart.eventlistener;
 
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ public final class WebDriverConfigurerEventListener {
 
     @EventListener
     @SuppressWarnings("unused")
-    public void onApplicationStarted(ApplicationStartedEvent event) {
+    public void onApplicationStarted(ContextStartedEvent event) {
         setPropertyOfHttpFactory();
         setupDriver();
     }
