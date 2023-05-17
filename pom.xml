@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example</groupId>
-    <artifactId>chart-builder</artifactId>
+    <groupId>by.aurorasoft</groupId>
+    <artifactId>aur-chart-builder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>chart-builder</name>
     <description>chart-builder</description>
