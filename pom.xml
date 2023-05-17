@@ -95,34 +95,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.hkirk</groupId>
-            <artifactId>java-html2image</artifactId>
-            <version>0.9</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.xhtmlrenderer/flying-saucer-core -->
-        <dependency>
-            <groupId>org.xhtmlrenderer</groupId>
-            <artifactId>flying-saucer-core</artifactId>
-            <version>9.0.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjdk.nashorn</groupId>
-            <artifactId>nashorn-core</artifactId>
-            <version>15.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.5.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ru.yandex.qatools.ashot</groupId>
-            <artifactId>ashot</artifactId>
-            <version>1.5.4</version>
         </dependency>
 
         <dependency>
