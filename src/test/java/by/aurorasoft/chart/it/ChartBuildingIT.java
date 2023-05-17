@@ -1,6 +1,6 @@
 package by.aurorasoft.chart.it;
 
-import by.aurorasoft.chart.base.AbstractSpringBootTest;
+import by.aurorasoft.chart.base.AbstractContextTest;
 import by.aurorasoft.chart.model.PreparedChart;
 import by.aurorasoft.chart.model.chart.*;
 import by.aurorasoft.chart.model.series.BarSeries;
@@ -10,7 +10,6 @@ import by.aurorasoft.chart.service.building.manager.ChartBuildingServiceManager;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.image.BufferedImage;
 import java.util.stream.Stream;
@@ -19,10 +18,8 @@ import static by.aurorasoft.chart.model.chart.format.ChartFormat.*;
 import static by.aurorasoft.chart.util.ChartImageUtil.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public final class ChartBuildingIT extends AbstractSpringBootTest {
-
-    @Autowired
-    private ChartBuildingServiceManager buildingServiceManager;
+public final class ChartBuildingIT extends AbstractContextTest {
+    private final ChartBuildingServiceManager buildingServiceManager = findBean(ChartBuildingServiceManager.class);
 
     @ParameterizedTest
     @MethodSource("chartBuildingArgumentsProvider")

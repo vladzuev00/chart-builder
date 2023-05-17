@@ -1,6 +1,6 @@
 package by.aurorasoft.chart.model.chart.format.formatter;
 
-import by.aurorasoft.chart.base.AbstractSpringBootTest;
+import by.aurorasoft.chart.base.AbstractContextTest;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.icepear.echarts.Bar;
 import org.icepear.echarts.Chart;
@@ -16,7 +16,7 @@ import static by.aurorasoft.chart.util.ChartImageUtil.*;
 import static java.util.Objects.requireNonNull;
 import static org.junit.Assert.assertTrue;
 
-public final class ChartToImageFormatterTest extends AbstractSpringBootTest {
+public final class ChartToImageFormatterTest extends AbstractContextTest {
     private static final String WILD_CARD_TEMP_FILE = "temp-*.html";
 
     private final ChartToImageFormatter formatter = new ChartToImageFormatter();
