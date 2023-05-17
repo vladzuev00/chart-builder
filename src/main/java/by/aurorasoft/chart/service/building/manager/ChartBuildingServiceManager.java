@@ -34,9 +34,7 @@ public final class ChartBuildingServiceManager {
 
     private AbstractChartBuildingService<?, ?, ?, ?, ?, ?> findBuildingService(Chart<?> source) {
         final Class<?> chartType = source.getClass();
-        final AbstractChartBuildingService<?, ?, ?, ?, ?, ?> buildingService = this.buildingServicesBySourceTypes.get(
-                chartType
-        );
+        var buildingService = this.buildingServicesBySourceTypes.get(chartType);
         if (buildingService == null) {
             throw new IllegalArgumentException(format("There is no service to build chart by source '%s'", source));
         }
