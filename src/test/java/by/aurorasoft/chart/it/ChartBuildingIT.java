@@ -90,7 +90,7 @@ public final class ChartBuildingIT extends AbstractContextTest {
     private static String createBarHtml() {
         return """
                 <html>
-
+                                
                 <head>
                     <meta charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -105,22 +105,22 @@ public final class ChartBuildingIT extends AbstractContextTest {
                         }
                     </style>
                 </head>
-
+                                
                 <body>
                     <div id="display-container">
                     </div>
                     <script type="text/javascript">
                         var chart = echarts.init(document.getElementById("display-container"));\s
-                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Matcha Latte","Milk Tea","Cheese Cocoa","Walnut Brownie"]}],"yAxis":[{"type":"value","name":"axisYName"}],"series":[{"type":"bar","name":"2015","animation":false,"data":[43.3,83.1,86.4,72.4]},{"type":"bar","name":"2016","animation":false,"data":[44.3,84.1,87.4,73.4]},{"type":"bar","name":"2017","animation":false,"data":[45.3,85.1,88.4,74.4]}]}
+                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Matcha Latte","Milk Tea","Cheese Cocoa","Walnut Brownie"]}],"yAxis":[{"type":"value","name":"axisYName"}],"legend":{},"series":[{"type":"bar","name":"2015","animation":false,"data":[43.3,83.1,86.4,72.4]},{"type":"bar","name":"2016","animation":false,"data":[44.3,84.1,87.4,73.4]},{"type":"bar","name":"2017","animation":false,"data":[45.3,85.1,88.4,74.4]}]}
                         chart.setOption(option);
                     </script>
                 </body>
-
+                                
                 </html>""";
     }
 
     private static String createBarJson() {
-        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Matcha Latte\",\"Milk Tea\",\"Cheese Cocoa\",\"Walnut Brownie\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"2015\",\"animation\":false,\"data\":[43.3,83.1,86.4,72.4]},{\"type\":\"bar\",\"name\":\"2016\",\"animation\":false,\"data\":[44.3,84.1,87.4,73.4]},{\"type\":\"bar\",\"name\":\"2017\",\"animation\":false,\"data\":[45.3,85.1,88.4,74.4]}]}";
+        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Matcha Latte\",\"Milk Tea\",\"Cheese Cocoa\",\"Walnut Brownie\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"legend\":{},\"series\":[{\"type\":\"bar\",\"name\":\"2015\",\"animation\":false,\"data\":[43.3,83.1,86.4,72.4]},{\"type\":\"bar\",\"name\":\"2016\",\"animation\":false,\"data\":[44.3,84.1,87.4,73.4]},{\"type\":\"bar\",\"name\":\"2017\",\"animation\":false,\"data\":[45.3,85.1,88.4,74.4]}]}";
     }
 
     private static StackBar createStackBar() {
@@ -142,7 +142,7 @@ public final class ChartBuildingIT extends AbstractContextTest {
     private static String createStackBarHtml() {
         return """
                 <html>
-
+                                
                 <head>
                     <meta charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -157,22 +157,22 @@ public final class ChartBuildingIT extends AbstractContextTest {
                         }
                     </style>
                 </head>
-
+                                
                 <body>
                     <div id="display-container">
                     </div>
                     <script type="text/javascript">
                         var chart = echarts.init(document.getElementById("display-container"));\s
-                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}],"yAxis":[{"type":"value","name":"axisYName"}],"series":[{"type":"bar","name":"Direct","animation":false,"emphasis":{},"data":[320,302,301,334,390,330,320],"stack":"total"},{"type":"bar","name":"Mail Ad","animation":false,"emphasis":{},"data":[120,132,101,134,90,230,210],"stack":"total"},{"type":"bar","name":"Affiliate Ad","animation":false,"emphasis":{},"data":[220,182,191,234,290,330,310],"stack":"total"},{"type":"bar","name":"Video Ad","animation":false,"emphasis":{},"data":[150,212,201,154,190,330,410],"stack":"total"},{"type":"bar","name":"Search Engine","animation":false,"emphasis":{},"data":[820,832,901,934,1290,1330,1320],"stack":"total"}]}
+                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}],"yAxis":[{"type":"value","name":"axisYName"}],"legend":{},"series":[{"type":"bar","name":"Direct","animation":false,"emphasis":{},"data":[320,302,301,334,390,330,320],"stack":"total"},{"type":"bar","name":"Mail Ad","animation":false,"emphasis":{},"data":[120,132,101,134,90,230,210],"stack":"total"},{"type":"bar","name":"Affiliate Ad","animation":false,"emphasis":{},"data":[220,182,191,234,290,330,310],"stack":"total"},{"type":"bar","name":"Video Ad","animation":false,"emphasis":{},"data":[150,212,201,154,190,330,410],"stack":"total"},{"type":"bar","name":"Search Engine","animation":false,"emphasis":{},"data":[820,832,901,934,1290,1330,1320],"stack":"total"}]}
                         chart.setOption(option);
                     </script>
                 </body>
-
+                                
                 </html>""";
     }
 
     private static String createStackBarJson() {
-        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"}]}";
+        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"}],\"legend\":{},\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"}]}";
     }
 
     private static StackBarWithLine createStackBarWithLine() {
@@ -196,7 +196,7 @@ public final class ChartBuildingIT extends AbstractContextTest {
     private static String createStackBarWithLineHtml() {
         return """
                 <html>
-
+                                
                 <head>
                     <meta charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -211,22 +211,22 @@ public final class ChartBuildingIT extends AbstractContextTest {
                         }
                     </style>
                 </head>
-
+                                
                 <body>
                     <div id="display-container">
                     </div>
                     <script type="text/javascript">
                         var chart = echarts.init(document.getElementById("display-container"));\s
-                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}],"yAxis":[{"type":"value","name":"axisYName"},{"position":"right","type":"value","name":"line-value"}],"series":[{"type":"bar","name":"Direct","animation":false,"emphasis":{},"data":[320,302,301,334,390,330,320],"stack":"total"},{"type":"bar","name":"Mail Ad","animation":false,"emphasis":{},"data":[120,132,101,134,90,230,210],"stack":"total"},{"type":"bar","name":"Affiliate Ad","animation":false,"emphasis":{},"data":[220,182,191,234,290,330,310],"stack":"total"},{"type":"bar","name":"Video Ad","animation":false,"emphasis":{},"data":[150,212,201,154,190,330,410],"stack":"total"},{"type":"bar","name":"Search Engine","animation":false,"emphasis":{},"data":[820,832,901,934,1290,1330,1320],"stack":"total"},{"type":"line","animation":false,"data":[150,230,224,218,135,147,260],"yAxisIndex":1}]}
+                        var option = {"title":{"text":"title"},"xAxis":[{"type":"category","name":"axisXName","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}],"yAxis":[{"type":"value","name":"axisYName"},{"position":"right","type":"value","name":"line-value"}],"legend":{},"series":[{"type":"bar","name":"Direct","animation":false,"emphasis":{},"data":[320,302,301,334,390,330,320],"stack":"total"},{"type":"bar","name":"Mail Ad","animation":false,"emphasis":{},"data":[120,132,101,134,90,230,210],"stack":"total"},{"type":"bar","name":"Affiliate Ad","animation":false,"emphasis":{},"data":[220,182,191,234,290,330,310],"stack":"total"},{"type":"bar","name":"Video Ad","animation":false,"emphasis":{},"data":[150,212,201,154,190,330,410],"stack":"total"},{"type":"bar","name":"Search Engine","animation":false,"emphasis":{},"data":[820,832,901,934,1290,1330,1320],"stack":"total"},{"type":"line","animation":false,"data":[150,230,224,218,135,147,260],"yAxisIndex":1}]}
                         chart.setOption(option);
                     </script>
                 </body>
-
+                                
                 </html>""";
     }
 
     private static String createStackBarWithLineJson() {
-        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"},{\"position\":\"right\",\"type\":\"value\",\"name\":\"line-value\"}],\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"},{\"type\":\"line\",\"animation\":false,\"data\":[150,230,224,218,135,147,260],\"yAxisIndex\":1}]}";
+        return "{\"title\":{\"text\":\"title\"},\"xAxis\":[{\"type\":\"category\",\"name\":\"axisXName\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]}],\"yAxis\":[{\"type\":\"value\",\"name\":\"axisYName\"},{\"position\":\"right\",\"type\":\"value\",\"name\":\"line-value\"}],\"legend\":{},\"series\":[{\"type\":\"bar\",\"name\":\"Direct\",\"animation\":false,\"emphasis\":{},\"data\":[320,302,301,334,390,330,320],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Mail Ad\",\"animation\":false,\"emphasis\":{},\"data\":[120,132,101,134,90,230,210],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Affiliate Ad\",\"animation\":false,\"emphasis\":{},\"data\":[220,182,191,234,290,330,310],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Video Ad\",\"animation\":false,\"emphasis\":{},\"data\":[150,212,201,154,190,330,410],\"stack\":\"total\"},{\"type\":\"bar\",\"name\":\"Search Engine\",\"animation\":false,\"emphasis\":{},\"data\":[820,832,901,934,1290,1330,1320],\"stack\":\"total\"},{\"type\":\"line\",\"animation\":false,\"data\":[150,230,224,218,135,147,260],\"yAxisIndex\":1}]}";
     }
 
     private static Pie createPie() {

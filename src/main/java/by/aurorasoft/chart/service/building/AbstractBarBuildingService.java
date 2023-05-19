@@ -19,7 +19,8 @@ public abstract class AbstractBarBuildingService<CHART extends AbstractBar>
 
     @Override
     protected final org.icepear.echarts.Bar createBuilder() {
-        return new org.icepear.echarts.Bar();
+        return new org.icepear.echarts.Bar()
+                .setLegend();
     }
 
     @Override

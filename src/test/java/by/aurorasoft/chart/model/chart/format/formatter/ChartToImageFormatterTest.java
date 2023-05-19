@@ -38,6 +38,7 @@ public final class ChartToImageFormatterTest extends AbstractContextTest {
 
     private static Bar createBar() {
         return new Bar()
+                .setLegend()
                 .setTitle("title")
                 .addXAxis("axisXName", new String[]{"Matcha Latte", "Milk Tea", "Cheese Cocoa", "Walnut Brownie"})
                 .addYAxis("axisYName")
