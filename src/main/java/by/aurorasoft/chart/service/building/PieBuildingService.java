@@ -3,6 +3,7 @@ package by.aurorasoft.chart.service.building;
 import by.aurorasoft.chart.model.chart.Pie;
 import by.aurorasoft.chart.model.series.PieSeries;
 import by.aurorasoft.chart.model.series.PieSeries.PieDataItem;
+import org.icepear.echarts.charts.pie.PieLabel;
 import org.springframework.stereotype.Service;
 
 import static java.util.Arrays.stream;
@@ -16,6 +17,12 @@ public final class PieBuildingService extends AbstractChartBuildingService<
         org.icepear.echarts.charts.pie.PieSeries,
         org.icepear.echarts.Pie
         > {
+
+    /**
+     * {b} - segment's name
+     * {d} - value in percent
+     */
+    private static final String FORMAT_SEGMENT_DESCRIPTION = "{b} : {d}%";
 
     public PieBuildingService() {
         super(Pie.class);
@@ -33,7 +40,8 @@ public final class PieBuildingService extends AbstractChartBuildingService<
 
     @Override
     protected org.icepear.echarts.charts.pie.PieSeries createBuilderSeries() {
-        return new org.icepear.echarts.charts.pie.PieSeries();
+        return new org.icepear.echarts.charts.pie.PieSeries()
+                .setLabel(createPieLabel());
     }
 
     @Override
@@ -41,6 +49,10 @@ public final class PieBuildingService extends AbstractChartBuildingService<
         return stream(mapped)
                 .map(PieBuildingService::mapToEchartsDataItem)
                 .toArray(org.icepear.echarts.charts.pie.PieDataItem[]::new);
+    }
+
+    private static PieLabel createPieLabel() {
+        return new PieLabel().setFormatter(FORMAT_SEGMENT_DESCRIPTION);
     }
 
     private static org.icepear.echarts.charts.pie.PieDataItem mapToEchartsDataItem(PieDataItem pieDataItem) {

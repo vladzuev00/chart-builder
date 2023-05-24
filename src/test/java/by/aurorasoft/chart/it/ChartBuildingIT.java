@@ -245,7 +245,7 @@ public final class ChartBuildingIT extends AbstractContextTest {
     private static String createPieHtml() {
         return """
                 <html>
-
+                                
                 <head>
                     <meta charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -260,21 +260,21 @@ public final class ChartBuildingIT extends AbstractContextTest {
                         }
                     </style>
                 </head>
-
+                                
                 <body>
                     <div id="display-container">
                     </div>
                     <script type="text/javascript">
                         var chart = echarts.init(document.getElementById("display-container"));\s
-                        var option = {"title":{"text":"title"},"series":[{"type":"pie","animation":false,"data":[{"name":"item1","value":50.0},{"name":"item2","value":75.0},{"name":"item3","value":150.0}]}]}
+                        var option = {"title":{"text":"title"},"series":[{"type":"pie","animation":false,"data":[{"name":"item1","value":50.0},{"name":"item2","value":75.0},{"name":"item3","value":150.0}],"label":{"formatter":"{b} : {d}%"}}]}
                         chart.setOption(option);
                     </script>
                 </body>
-
+                                
                 </html>""";
     }
 
     private static String createPieJson() {
-        return "{\"title\":{\"text\":\"title\"},\"series\":[{\"type\":\"pie\",\"animation\":false,\"data\":[{\"name\":\"item1\",\"value\":50.0},{\"name\":\"item2\",\"value\":75.0},{\"name\":\"item3\",\"value\":150.0}]}]}";
+        return "{\"title\":{\"text\":\"title\"},\"series\":[{\"type\":\"pie\",\"animation\":false,\"data\":[{\"name\":\"item1\",\"value\":50.0},{\"name\":\"item2\",\"value\":75.0},{\"name\":\"item3\",\"value\":150.0}],\"label\":{\"formatter\":\"{b} : {d}%\"}}]}";
     }
 }

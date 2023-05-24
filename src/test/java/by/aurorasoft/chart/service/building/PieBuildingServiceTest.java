@@ -2,12 +2,15 @@ package by.aurorasoft.chart.service.building;
 
 import by.aurorasoft.chart.model.series.PieSeries.PieDataItem;
 import org.icepear.echarts.Pie;
+import org.icepear.echarts.charts.pie.PieLabel;
 import org.icepear.echarts.charts.pie.PieSeries;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public final class PieBuildingServiceTest {
+    private static final String FORMAT_SEGMENT_DESCRIPTION = "{b} : {d}%";
+
     private final PieBuildingService buildingService = new PieBuildingService();
 
     @Test
@@ -19,7 +22,9 @@ public final class PieBuildingServiceTest {
     @Test
     public void builderSeriesShouldBeCreated() {
         final PieSeries actual = this.buildingService.createBuilderSeries();
-        assertNotNull(actual);
+        final PieSeries expected = new PieSeries()
+                .setLabel(new PieLabel().setFormatter(FORMAT_SEGMENT_DESCRIPTION));
+        assertEquals(expected, actual);
     }
 
     @Test
