@@ -8,4 +8,8 @@ public final class Pie extends Chart<PieSeries> {
         super(title, new PieSeries[]{series});
     }
 
+    public Pie(String title, PieSeries[] series) {
+        super(title, series);
+    }
+
 }

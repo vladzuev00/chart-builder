@@ -55,7 +55,7 @@ public final class AbstractChartBuildingServiceTest {
     public void titleShouldBeAppended()
             throws Exception {
         final String givenTitle = "title";
-        final Pie givenSource = new Pie(givenTitle, null);
+        final Pie givenSource = new Pie(givenTitle, (PieSeries) null);
 
         final Method methodAppendingTitle = this.findMethod(
                 METHOD_NAME_APPENDING_TITLE, Chart.class, org.icepear.echarts.Chart.class
@@ -68,7 +68,7 @@ public final class AbstractChartBuildingServiceTest {
     @Test
     public void titleShouldNotBeAppended()
             throws Exception {
-        final Pie givenSource = new Pie(null, null);
+        final Pie givenSource = new Pie(null, (PieSeries) null);
 
         final Method methodAppendingTitle = this.findMethod(
                 METHOD_NAME_APPENDING_TITLE, Chart.class, org.icepear.echarts.Chart.class
